@@ -4,7 +4,13 @@
 DB_HOST='127.0.0.1'
 DB_PORT='8745'
 DB_USER='postgres'
-#DB_PASSWORD='senha do banco de dados'
+#DB_PASSWORD='coloque sua senha do banco de dados'
+
+# Verifica se a variável DB_PASSWORD foi definida
+if [ -z "$DB_PASSWORD" ]; then
+  echo "Erro: A variável DB_PASSWORD não foi definida."
+  exit 1
+fi
 
 # Queries SQL
 SQL_CREATE_USER="CREATE USER zbx_monitor WITH PASSWORD 'DB@m0nit0r' INHERIT;"
