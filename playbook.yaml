@@ -1,0 +1,21 @@
+# Playbook não implementada até o momento
+- name: Criar usuário zbx_monitor e conceder permissão pg_monitor
+  hosts: postgres_servers
+  become: true
+  gather_facts: false
+
+  tasks:
+    - name: Criar usuário zbx_monitor
+      community.postgresql.postgresql_user:
+        name: zbx_monitor
+        password: DB@m0nit0r
+        # db: mydatabase
+        state: present
+        encrypted: true
+
+    - name: Conceder permissão pg_monitor
+      community.postgresql.postgresql_user:
+        name: zbx_monitor
+        # db: mydatabase
+        privileges:
+          - pg_monitor
